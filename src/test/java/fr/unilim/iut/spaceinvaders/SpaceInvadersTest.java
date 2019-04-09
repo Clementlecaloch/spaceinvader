@@ -34,6 +34,9 @@ public class SpaceInvadersTest {
    @Test
 	public void test_unNouveauVaisseauEstCorrectementPositionneDansEspaceJeu() {
 		spaceinvaders.positionnerUnNouveauVaisseau(7,9);
+		
+		spaceinvaders.deplacerVaisseauVersLaDroite();
+		
 		assertEquals("" + 
 		"...............\n" + 
 		"...............\n" +
@@ -44,7 +47,27 @@ public class SpaceInvadersTest {
 		"...............\n" + 
 		"...............\n" + 
 		"...............\n" + 
-		".......V.......\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+		"........V......\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+   
+   @Test
+	public void test_VaisseauImmobile_DeplacerVaisseauVersLaDroite() {
+		
+		spaceinvaders.positionnerUnNouveauVaisseau(14,9);
+
+		spaceinvaders.deplacerVaisseauVersLaDroite();
+		
+		assertEquals("" + 
+		"...............\n" + 
+		"...............\n" +
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"..............V\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
    
    @Test
