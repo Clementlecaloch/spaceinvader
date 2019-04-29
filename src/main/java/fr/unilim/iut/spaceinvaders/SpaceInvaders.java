@@ -1,5 +1,7 @@
 package fr.unilim.iut.spaceinvaders;
 
+import java.awt.Dimension;
+
 import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
 
@@ -73,5 +75,10 @@ public class SpaceInvaders {
 		vaisseau = new Vaisseau(longueur,hauteur);
 		
 		vaisseau.positionner(x,y);
+	}
+
+	public void positionnerUnNouveauVaisseau(Dimensions dimension, Position position) {
+		positionnerUnNouveauVaisseau(dimension.longueur(), dimension.hauteur(),
+				position.abscisse(), position.ordonnee());
 	}
 }
