@@ -7,9 +7,9 @@ public class Main {
 		SpaceInvaders jeu = new SpaceInvaders(Constante.ESPACEJEU_LONGUEUR, Constante.ESPACEJEU_HAUTEUR);
 		jeu.initialiserJeu();
 		DessinSpaceInvaders affichage = new DessinSpaceInvaders(jeu);
-		
+
 		MoteurGraphique moteur = new MoteurGraphique(jeu, affichage);
 		moteur.lancerJeu(Constante.ESPACEJEU_LONGUEUR, Constante.ESPACEJEU_HAUTEUR);
-		
+
 	}
 }

@@ -6,9 +6,9 @@ import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
 
 public class SpaceInvaders implements Jeu {
-	int longueur;
-	int hauteur;
-	Vaisseau vaisseau;
+	private int longueur;
+	private int hauteur;
+	private Vaisseau vaisseau;
 
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
@@ -16,8 +16,12 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public void deplacerVaisseauVersLaDroite() {
-		if (vaisseau.abscisseLaPlusADroite() < (longueur - 1))
+		if (vaisseau.abscisseLaPlusADroite() < (longueur - 1)) {
 			vaisseau.seDeplacerVersLaDroite();
+			if (!estDansEspaceJeu(vaisseau.abscisseLaPlusADroite(), vaisseau.ordonneeLaPlusHaute())) {
+				vaisseau.positionner(this.longueur + 1 - this.vaisseau.longueur(), this.vaisseau.ordonneeLaPlusHaute());
+			}
+		}
 	}
 
 	public String recupererEspaceJeuDansChaineASCII() {
@@ -55,11 +59,14 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public void deplacerVaisseauVersLaGauche() {
-		if (vaisseau.abscisseLaPlusAGauche() > (0))
+		if (0 < vaisseau.abscisseLaPlusAGauche())
 			vaisseau.seDeplacerVersLaGauche();
+		if (!estDansEspaceJeu(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusHaute())) {
+			vaisseau.positionner(0, vaisseau.ordonneeLaPlusHaute());
+		}
 	}
 
-	public void positionnerUnNouveauVaisseau(Dimensions dimension, Position position) {
+	public void positionnerUnNouveauVaisseau(Dimensions dimension, Position position, int vitesse) {
 
 		int x = position.abscisse();
 		int y = position.ordonnee();
@@ -77,15 +84,14 @@ public class SpaceInvaders implements Jeu {
 			throw new DebordementEspaceJeuException(
 					"Le vaisseau déborde de l'espace jeu vers le bas à cause de sa hauteur");
 
-		vaisseau = new Vaisseau(longueurVaisseau, hauteurVaisseau);
-		vaisseau.positionner(x, y);
+		vaisseau = new Vaisseau(dimension, position, Constante.VAISSEAU_VITESSE);
 	}
 
 	public void initialiserJeu() {
-		Position positionVaisseau = new Position(this.longueur / 2, this.hauteur - 1);
+		Position positionVaisseau = new Position(this.longueur/2,this.hauteur-6);
 		Dimensions dimensionVaisseau = new Dimensions(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
-		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau);
-	}
+		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
+	 }
 
 	public Vaisseau recupererVaisseau() {
 		return this.vaisseau;
