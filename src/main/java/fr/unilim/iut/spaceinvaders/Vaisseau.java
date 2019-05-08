@@ -3,7 +3,7 @@ package fr.unilim.iut.spaceinvaders;
 public class Vaisseau {
 	private Position origine;
 	private Dimensions dimension;
-	private int vitesse;
+	int vitesse;
 
 	public Vaisseau(int longueur, int hauteur) {
 		this(longueur, hauteur, 0, 0);
@@ -16,8 +16,9 @@ public class Vaisseau {
 	public Vaisseau(Dimensions dimension, Position positionOrigine, int vitesse) {
 		this.dimension = dimension;
 		this.origine = positionOrigine;
-		this.vitesse = 1;
+		this.vitesse = vitesse;
 	}
+	
 	public Vaisseau(Dimensions dimension, Position positionOrigine) {
 		this(dimension, positionOrigine, 1);
 	}
@@ -57,8 +58,8 @@ public class Vaisseau {
 	public void seDeplacerVersLaDroite() {
 		this.origine.changerAbscisse(this.origine.abscisse() + this.vitesse);
 	}
-
-	public void seDeplacerVersLaGauche() {
+    
+    public void seDeplacerVersLaGauche() {
 		this.origine.changerAbscisse(this.origine.abscisse() - this.vitesse);
 	}
 

@@ -84,14 +84,14 @@ public class SpaceInvaders implements Jeu {
 			throw new DebordementEspaceJeuException(
 					"Le vaisseau déborde de l'espace jeu vers le bas à cause de sa hauteur");
 
-		vaisseau = new Vaisseau(dimension, position, Constante.VAISSEAU_VITESSE);
+		vaisseau = new Vaisseau(dimension, position, vitesse);
 	}
 
 	public void initialiserJeu() {
-		Position positionVaisseau = new Position(this.longueur/2,this.hauteur-6);
+		Position positionVaisseau = new Position(this.longueur / 2, this.hauteur - 6);
 		Dimensions dimensionVaisseau = new Dimensions(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
-	 }
+	}
 
 	public Vaisseau recupererVaisseau() {
 		return this.vaisseau;
@@ -100,11 +100,11 @@ public class SpaceInvaders implements Jeu {
 	@Override
 	public void evoluer(Commande commandeUser) {
 		if (commandeUser.gauche) {
-			deplacerVaisseauVersLaGauche();
+			this.vaisseau.seDeplacerVersLaGauche();
 		}
 
 		if (commandeUser.droite) {
-			deplacerVaisseauVersLaDroite();
+			this.vaisseau.seDeplacerVersLaDroite();
 		}
 	}
 
