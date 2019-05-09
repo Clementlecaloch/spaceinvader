@@ -3,14 +3,11 @@ package fr.unilim.iut.spaceinvaders;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.awt.Dimension;
-
 import org.junit.Test;
 import org.junit.Before;
 
 import fr.unilim.iut.spaceinvaders.SpaceInvaders;
-import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
-import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
+import fr.unilim.iut.spaceinvaders.utils.*;
 
 public class SpaceInvadersTest {
 	private SpaceInvaders spaceinvaders;
@@ -19,6 +16,30 @@ public class SpaceInvadersTest {
 	public void initialisation() {
 		spaceinvaders = new SpaceInvaders(15, 10);
 	}
+	
+	@Test(expected = MissileException.class)
+	public void test_PasAssezDePlacePourTirerUnMissile_UneExceptionEstLevee() throws Exception { 
+	   spaceinvaders.positionnerUnNouveauVaisseau(new Dimensions(7,2),new Position(5,9), 1);
+	   spaceinvaders.tirerUnMissile(new Dimensions(7,9),1);
+	}
+	 @Test
+     public void test_MissileBienTireDepuisVaisseau_VaisseauLongueurImpaireMissileLongueurImpaire() {
+
+	   spaceinvaders.positionnerUnNouveauVaisseau(new Dimensions(7,2),new Position(5,9), 2);
+	   spaceinvaders.tirerUnMissile(new Dimensions(3,2),2);
+
+       assertEquals("" + 
+       "...............\n" + 
+       "...............\n" +
+       "...............\n" + 
+       "...............\n" + 
+       "...............\n" + 
+       "...............\n" + 
+       ".......MMM.....\n" + 
+       ".......MMM.....\n" + 
+       ".....VVVVVVV...\n" + 
+       ".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+    }
 	
 	public void test_VaisseauAvance_DeplacerVaisseauVersLaDroite_AvecVitesse() {
 

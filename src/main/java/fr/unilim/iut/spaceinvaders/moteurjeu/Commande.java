@@ -15,6 +15,7 @@ public class Commande {
 	public boolean droite;
 	public boolean haut;
 	public boolean bas;
+	public boolean tir;
 
 	public Commande()
 	{
@@ -28,6 +29,7 @@ public class Commande {
 	 */
 	public Commande(Commande commandeACopier)
 	{
+		this.tir=commandeACopier.tir;
 		this.bas=commandeACopier.bas;
 		this.haut=commandeACopier.haut;
 		this.gauche=commandeACopier.gauche;
