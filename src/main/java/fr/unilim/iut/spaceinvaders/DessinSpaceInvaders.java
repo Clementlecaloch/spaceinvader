@@ -7,25 +7,27 @@ import java.awt.image.BufferedImage;
 import fr.unilim.iut.spaceinvaders.moteurjeu.DessinJeu;
 
 public class DessinSpaceInvaders implements DessinJeu {
-	SpaceInvaders jeu;
 
-	public DessinSpaceInvaders(SpaceInvaders space) {
-		this.jeu = space;
+	private SpaceInvaders jeu;
+
+	public DessinSpaceInvaders(SpaceInvaders spaceInvaders) {
+		this.jeu = spaceInvaders;
 	}
 
-	 @Override
-	   public void dessiner(BufferedImage im) {
-		   if (this.jeu.aUnVaisseau()) {
-			   Vaisseau vaisseau = this.jeu.recupererVaisseau();
-			   this.dessinerUnVaisseau(vaisseau, im);
-		   }
-	   }
+	public void dessiner(BufferedImage im) {
+		if (this.jeu.aUnVaisseau()) {
+			Vaisseau vaisseau = this.jeu.recupererVaisseau();
+			this.dessinerUnVaisseau(vaisseau, im);
+		}
+	}
 
-	   private void dessinerUnVaisseau(Vaisseau vaisseau, BufferedImage im) {
-		   Graphics2D crayon = (Graphics2D) im.getGraphics();
+	private void dessinerUnVaisseau(Vaisseau vaisseau, BufferedImage im) {
+		Graphics2D crayon = (Graphics2D) im.getGraphics();
 
-		   crayon.setColor(Color.PINK);
-		   	crayon.fillRect(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusBasse(), vaisseau.longueur(), vaisseau.hauteur());
+		crayon.setColor(Color.pink);
+		crayon.fillRect(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusBasse(), vaisseau.longueur(),
+				vaisseau.hauteur());
 
-	   }
+	}
+
 }
