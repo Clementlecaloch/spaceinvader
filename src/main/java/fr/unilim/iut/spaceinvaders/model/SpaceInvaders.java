@@ -21,6 +21,11 @@ public class SpaceInvaders implements Jeu {
 		Position positionVaisseau = new Position(this.longueur / 2, this.hauteur - 1);
 		Dimensions dimensionVaisseau = new Dimensions(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
+		
+		Position positionEnvahisseur = new Position(this.longueur / 2, Constante.ENVAHISSEUR_HAUTEUR);
+		Dimensions dimensionsEnvahisseur = new Dimensions(Constante.ENVAHISSEUR_LONGUEUR, Constante.ENVAHISSEUR_HAUTEUR);
+		
+		this.positionnerUnNouvelEnvahisseur(dimensionsEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
 	}
 
 	public String recupererEspaceJeuDansChaineASCII() {
@@ -51,7 +56,7 @@ public class SpaceInvaders implements Jeu {
 		return this.aUnEnvahisseur() && envahisseur.occupeLaPosition(x, y);
 	}
 
-	private boolean aUnEnvahisseur() {
+	public boolean aUnEnvahisseur() {
 		return envahisseur != null;
 	}
 
@@ -139,6 +144,9 @@ public class SpaceInvaders implements Jeu {
 		if(this.aUnMissile()) {
 			this.deplacerMissile();
 		}
+		if (this.aUnEnvahisseur()) {
+			this.deplacerEnvahisseur();
+		}
 	}
 
 	public boolean etreFini() {
@@ -223,6 +231,10 @@ public class SpaceInvaders implements Jeu {
 			}
 			
 		}
+	}
+
+	public Envahisseur recupererEnvahisseur() {
+		return this.envahisseur;
 	}
 
 }
