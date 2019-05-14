@@ -185,4 +185,44 @@ public class SpaceInvaders implements Jeu {
 		
 	}
 
+	public void deplacerEnvahisseurVersLaDroite() {
+		if (this.aUnEnvahisseur()) {
+			this.envahisseur.deplacerHorizontalementVers(Direction.DROITE);
+			if (!estDansEspaceJeu(envahisseur.abscisseLaPlusADroite(), envahisseur.ordonneeLaPlusHaute())) {
+				envahisseur.positionner(longueur - envahisseur.longueur(), envahisseur.ordonneeLaPlusHaute());
+		}
+		}
+	}
+
+	public void deplacerEnvahisseurVersLaGauche() {
+		if (this.aUnEnvahisseur()) {
+			this.envahisseur.deplacerHorizontalementVers(Direction.GAUCHE);
+			if (!estDansEspaceJeu(envahisseur.abscisseLaPlusAGauche(), envahisseur.ordonneeLaPlusHaute())) {
+			envahisseur.positionner(0, envahisseur.ordonneeLaPlusHaute());
+			}
+		}
+	}
+
+	public void deplacerEnvahisseur() {
+		if (this.aUnEnvahisseur()) {
+			switch (envahisseur.sensDeDeplacement()) {
+			case Constante.DROITE : 
+				this.deplacerEnvahisseurVersLaDroite();
+				if (this.envahisseur.abscisseLaPlusADroite() == this.longueur - 1) {
+					this.envahisseur.changerSensDeDirection(Constante.GAUCHE);
+				}	
+				break;
+			case Constante.GAUCHE : 
+				this.deplacerEnvahisseurVersLaGauche();
+				if (this.envahisseur.abscisseLaPlusAGauche() == 0) {
+					this.envahisseur.changerSensDeDirection(Constante.DROITE);
+				}
+				break;
+			default : 
+				break;
+			}
+			
+		}
+	}
+
 }
