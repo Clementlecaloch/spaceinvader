@@ -2,7 +2,8 @@ package fr.unilim.iut.spaceinvaders.moteurjeu;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import fr.unilim.iut.spaceinvaders.Constante;;
+
+import fr.unilim.iut.spaceinvaders.model.Constante;;
 
 /**
  * classe qui represente un controleur en lien avec un KeyListener
