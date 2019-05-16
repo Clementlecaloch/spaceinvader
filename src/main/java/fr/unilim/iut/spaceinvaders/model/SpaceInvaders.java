@@ -216,20 +216,28 @@ public class SpaceInvaders implements Jeu {
 			switch (envahisseur.sensDeDeplacement()) {
 			case Constante.DROITE : 
 				this.deplacerEnvahisseurVersLaDroite();
-				if (this.envahisseur.abscisseLaPlusADroite() == this.longueur - 1) {
-					this.envahisseur.changerSensDeDirection(Constante.GAUCHE);
-				}	
+				changerDirectionAGauche();	
 				break;
 			case Constante.GAUCHE : 
 				this.deplacerEnvahisseurVersLaGauche();
-				if (this.envahisseur.abscisseLaPlusAGauche() == 0) {
-					this.envahisseur.changerSensDeDirection(Constante.DROITE);
-				}
+				changerDirectionADroite();
 				break;
 			default : 
 				break;
 			}
 			
+		}
+	}
+
+	public void changerDirectionAGauche() {
+		if (this.envahisseur.abscisseLaPlusADroite() == this.longueur - 1) {
+			this.envahisseur.changerSensDeDirection(Constante.GAUCHE);
+		}
+	}
+
+	public void changerDirectionADroite() {
+		if (this.envahisseur.abscisseLaPlusAGauche() == 0) {
+			this.envahisseur.changerSensDeDirection(Constante.DROITE);
 		}
 	}
 
