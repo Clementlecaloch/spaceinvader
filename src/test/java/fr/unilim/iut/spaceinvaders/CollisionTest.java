@@ -9,7 +9,6 @@ import org.junit.Before;
 import fr.unilim.iut.spaceinvaders.model.Dimensions;
 import fr.unilim.iut.spaceinvaders.model.Position;
 import fr.unilim.iut.spaceinvaders.model.SpaceInvaders;
-import fr.unilim.iut.spaceinvaders.model.Sprite;
 import fr.unilim.iut.spaceinvaders.model.Collision;
 
 public class CollisionTest {

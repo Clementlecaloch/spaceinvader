@@ -17,7 +17,7 @@ public class Constante {
 	
 	public static final int MISSILE_HAUTEUR = 20;
 	public static final int MISSILE_LONGUEUR = 10;
-	public static final int MISSILE_VITESSE = 30;
+	public static final int MISSILE_VITESSE = 50;
 	public static final String DROITE = "Droite";
 	public static final String GAUCHE = "Gauche";
 	

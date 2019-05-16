@@ -24,6 +24,21 @@ public class SpaceInvadersTest {
 	   spaceinvaders.positionnerUnNouveauVaisseau(new Dimensions(7,2),new Position(5,9), 1);
 	   spaceinvaders.tirerUnMissile(new Dimensions(7,9),1);
 	}
+	
+	public void test_laPartieEstTermine() {
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimensions(7, 2), new Position(5, 9), 2);
+		spaceinvaders.tirerUnMissile(new Dimensions(3, 2), 2);
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimensions(7,2),new Position(5,1), 1);
+		
+		spaceinvaders.deplacerMissile();
+		spaceinvaders.deplacerMissile();
+		spaceinvaders.deplacerMissile();
+		
+		 assertEquals(true, spaceinvaders.etreFini());
+	}
+	
+	
+	
 	 @Test
 	   public void test_PositonnerUnEnvahisseur_CorrectementPositionner() {
 

@@ -1,14 +1,10 @@
-package fr.unilim.iut.spaceinvaders.model;
+ package fr.unilim.iut.spaceinvaders.model;
 
 public abstract class Sprite {
 
 	protected Position origine;
 	protected Dimensions dimension;
 	protected int vitesse;
-
-	public Sprite() {
-		super();
-	}
 
 	public Sprite(Dimensions dimension, Position origine, int vitesse) {
 		super();
@@ -21,7 +17,7 @@ public abstract class Sprite {
 		return estAbscisseCouverte(x) && estOrdonneeCouverte(y);
 	}
 
-	private boolean estOrdonneeCouverte(int y) {
+	public boolean estOrdonneeCouverte(int y) {
 		return (ordonneeLaPlusBasse() <= y) && (y <= ordonneeLaPlusHaute());
 	}
 
