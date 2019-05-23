@@ -6,7 +6,6 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.Before;
 
-import fr.unilim.iut.spaceinvaders.model.Collision;
 import fr.unilim.iut.spaceinvaders.model.Dimensions;
 import fr.unilim.iut.spaceinvaders.model.Position;
 import fr.unilim.iut.spaceinvaders.model.SpaceInvaders;

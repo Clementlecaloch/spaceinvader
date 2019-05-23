@@ -22,7 +22,7 @@ public class SpaceInvaders implements Jeu {
 		Dimensions dimensionVaisseau = new Dimensions(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
 
-		Position positionEnvahisseur = new Position(this.longueur / 2, Constante.ENVAHISSEUR_HAUTEUR);
+		Position positionEnvahisseur = new Position(this.longueur / 2, 300);
 		Dimensions dimensionsEnvahisseur = new Dimensions(Constante.ENVAHISSEUR_LONGUEUR,
 				Constante.ENVAHISSEUR_HAUTEUR);
 

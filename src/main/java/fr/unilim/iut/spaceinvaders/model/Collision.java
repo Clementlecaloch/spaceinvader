@@ -3,30 +3,37 @@ package fr.unilim.iut.spaceinvaders.model;
 public class Collision {
 
 	
-	public static boolean detecterCollision(Sprite missile, Sprite envahisseur) {
-		if (missileDansEnvahisseur(missile, envahisseur)) {
+	public static boolean detecterCollision(Sprite sprite1, Sprite sprite2) {
+		if (sprite1DansSprite2(sprite1, sprite2)) {
 			return true;
 		}
 		return false;
 	}
 
-	public static boolean missileDansEnvahisseur(Sprite missile, Sprite envahisseur) {
-		return leMissileEstAHauteurDeLEnvahisseur(missile,envahisseur) && (droiteDuMissileDansEnvahisseur(missile, envahisseur)
-				|| leMissileEstAHauteurDeLEnvahisseur(missile,envahisseur) && gaucheDuMissileDansEnvahisseur(missile, envahisseur));
+	public static boolean sprite1DansSprite2(Sprite sprite1, Sprite sprite2) {
+		return (leHautDuSprite1DansSprite2(sprite1,sprite2) || BasDuSprite1DansSprite2(sprite1, sprite2)) && (droiteDuSprite1dansSprite2(sprite1, sprite2)
+				|| (leHautDuSprite1DansSprite2(sprite1,sprite2) || BasDuSprite1DansSprite2(sprite1, sprite2)) && gaucheDuSprite1DansSprite2(sprite1, sprite2));
 	}
 
-	public static boolean gaucheDuMissileDansEnvahisseur(Sprite missile, Sprite envahisseur) {
-		return (envahisseur.abscisseLaPlusADroite() > missile.abscisseLaPlusAGauche()) && (envahisseur.abscisseLaPlusAGauche() < missile.abscisseLaPlusAGauche());
+	public static boolean gaucheDuSprite1DansSprite2(Sprite sprite1, Sprite sprite2) {
+		return (sprite2.abscisseLaPlusADroite() >= sprite1.abscisseLaPlusAGauche()) && (sprite2.abscisseLaPlusAGauche() < sprite1.abscisseLaPlusAGauche());
 	}
 
-	public static boolean droiteDuMissileDansEnvahisseur(Sprite missile, Sprite envahisseur) {
-		return (envahisseur.abscisseLaPlusADroite() > missile.abscisseLaPlusADroite()) && (envahisseur.abscisseLaPlusAGauche() < missile.abscisseLaPlusADroite());
+	public static boolean droiteDuSprite1dansSprite2(Sprite sprite1, Sprite sprite2) {
+		return (sprite2.abscisseLaPlusADroite() >= sprite1.abscisseLaPlusADroite()) && (sprite2.abscisseLaPlusAGauche() < sprite1.abscisseLaPlusADroite());
 	}
 
-	public static boolean leMissileEstAHauteurDeLEnvahisseur(Sprite missile, Sprite envahisseur) {
-		if (missile.ordonneeLaPlusBasse() < envahisseur.ordonneeLaPlusHaute()) 
+	public static boolean leHautDuSprite1DansSprite2(Sprite sprite1, Sprite sprite2) {
+		if (sprite1.ordonneeLaPlusBasse() <= sprite2.ordonneeLaPlusHaute() && sprite1.ordonneeLaPlusBasse() >= sprite2.ordonneeLaPlusBasse()) 
+			return true;
+		return false;
+	}
+
+	public static boolean BasDuSprite1DansSprite2(Sprite sprite1, Sprite sprite2) {
+		if (sprite1.ordonneeLaPlusHaute() <= sprite2.ordonneeLaPlusHaute() && sprite1.ordonneeLaPlusHaute() >= sprite2.ordonneeLaPlusBasse()) 
 			return true;
 		return false;
 	}
 	
 }
+

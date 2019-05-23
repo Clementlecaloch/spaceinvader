@@ -21,7 +21,7 @@ public class Constante {
 	public static final String DROITE = "Droite";
 	public static final String GAUCHE = "Gauche";
 	
-	public static final int ENVAHISSEUR_LONGUEUR = 30;
-	public static final int ENVAHISSEUR_HAUTEUR = 20;
+	public static final int ENVAHISSEUR_LONGUEUR = 60;
+	public static final int ENVAHISSEUR_HAUTEUR = 60;
 	public static final int ENVAHISSEUR_VITESSE = 20;
 }
