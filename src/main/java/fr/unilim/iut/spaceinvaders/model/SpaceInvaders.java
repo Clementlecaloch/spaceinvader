@@ -1,5 +1,8 @@
 package fr.unilim.iut.spaceinvaders.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.unilim.iut.spaceinvaders.moteurjeu.Commande;
 import fr.unilim.iut.spaceinvaders.moteurjeu.Jeu;
 import fr.unilim.iut.spaceinvaders.utils.*;
@@ -9,12 +12,13 @@ public class SpaceInvaders implements Jeu {
 	int longueur;
 	int hauteur;
 	Vaisseau vaisseau;
-	Missile missile;
+	List<Missile> missiles;
 	Envahisseur envahisseur;
 
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
+		missiles = new ArrayList<Missile>();
 	}
 
 	public void initialiserJeu() {
@@ -62,11 +66,17 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	private boolean aUnMissileQuiOccupeLaPosition(int x, int y) {
-		return this.aUnMissile() && missile.occupeLaPosition(x, y);
+		boolean res = false;
+		for (int i = 0; i < missiles.size(); i++) {
+			if (this.aUnMissile() && missiles.get(i).occupeLaPosition(x, y)) {
+				res = true;
+			}
+		}
+		return res;
 	}
 
 	public boolean aUnMissile() {
-		return missile != null;
+		return !missiles.isEmpty();
 	}
 
 	private boolean aUnVaisseauQuiOccupeLaPosition(int x, int y) {
@@ -124,8 +134,8 @@ public class SpaceInvaders implements Jeu {
 		return this.vaisseau;
 	}
 
-	public Missile recupererMissile() {
-		return this.missile;
+	public List<Missile> recupererMissile() {
+		return this.missiles;
 	}
 
 	public void evoluer(Commande commandeUser) {
@@ -138,7 +148,7 @@ public class SpaceInvaders implements Jeu {
 			deplacerVaisseauVersLaDroite();
 		}
 
-		if (commandeUser.tir && !this.aUnMissile()) {
+		if (commandeUser.tir) {
 			tirerUnMissile(new Dimensions(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
 					Constante.MISSILE_VITESSE);
 		}
@@ -154,8 +164,13 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public boolean etreFini() {
-		if (this.aUnMissile() && Collision.detecterCollision(missile, envahisseur)) {
-			return true;
+		if (this.aUnMissile()) {
+			boolean res = false;
+			for (int i = 0; i < missiles.size(); i++) {
+				if (Collision.detecterCollision(missiles.get(i), envahisseur))
+					res = true;
+			}
+			return res;
 		}
 		return false;
 	}
@@ -166,15 +181,16 @@ public class SpaceInvaders implements Jeu {
 			throw new MissileException(
 					"Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
 
-		this.missile = this.vaisseau.tirerUnMissile(dimensionMissile, vitesseMissile);
+		this.missiles.add(this.vaisseau.tirerUnMissile(dimensionMissile, vitesseMissile));
 	}
 
 	public void deplacerMissile() {
 		if (this.aUnMissile()) {
-			this.missile.deplacerVerticalementVers(Direction.HAUT_ECRAN);
-			if (this.missile.ordonneeLaPlusBasse() < 0) {
-				this.missile = null;
-			}
+			this.missiles.forEach(i -> i.deplacerVerticalementVers(Direction.HAUT_ECRAN));
+			this.missiles.forEach(i -> {
+				if (i.ordonneeLaPlusBasse() < 0)
+					i = null;
+			});
 		}
 	}
 

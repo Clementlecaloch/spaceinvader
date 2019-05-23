@@ -215,11 +215,9 @@ public class SpaceInvadersTest {
 
 		   spaceinvaders.positionnerUnNouveauVaisseau(new Dimensions(7,2),new Position(5,9), 1);
 		   spaceinvaders.tirerUnMissile(new Dimensions(3,2),1);
-		   for (int i = 1; i <=6 ; i++) {
+		   for (int i = 1; i <= 8 ; i++) {
 			   spaceinvaders.deplacerMissile();
 		   }
-		   
-		   spaceinvaders.deplacerMissile();
 		   
 	       assertEquals("" +
 	       "...............\n" + 
@@ -442,6 +440,31 @@ public class SpaceInvadersTest {
 			fail("Position trop à haut : devrait déclencher une exception HorsEspaceJeuException");
 		} catch (final HorsEspaceJeuException e) {
 		}
-
+	}	
+	
+	@Test
+	public void test_tirerPlusieursMissiles_SansCollistion() {
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimensions(7,2),new Position(5,9), 2);
+		spaceinvaders.tirerUnMissile(new Dimensions(3,2),1);
+		
+		spaceinvaders.deplacerMissile();
+		
+		spaceinvaders.tirerUnMissile(new Dimensions(3,2),1);
+		
+		  assertEquals("" + 
+			       "...............\n" + 
+			       "...............\n" +
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       ".......MMM.....\n" + 
+			       ".......MMM.....\n" + 
+			       "...............\n" + 
+			       ".....VVVVVVV...\n" + 
+			       ".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
+	
+	
+	
+	
 }

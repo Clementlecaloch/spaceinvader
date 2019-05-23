@@ -17,11 +17,11 @@ public class Constante {
 	
 	public static final int MISSILE_HAUTEUR = 20;
 	public static final int MISSILE_LONGUEUR = 10;
-	public static final int MISSILE_VITESSE = 50;
+	public static final int MISSILE_VITESSE = 20;
 	public static final String DROITE = "Droite";
 	public static final String GAUCHE = "Gauche";
 	
-	public static final int ENVAHISSEUR_LONGUEUR = 60;
-	public static final int ENVAHISSEUR_HAUTEUR = 60;
+	public static final int ENVAHISSEUR_LONGUEUR = 30;
+	public static final int ENVAHISSEUR_HAUTEUR = 30;
 	public static final int ENVAHISSEUR_VITESSE = 20;
 }
