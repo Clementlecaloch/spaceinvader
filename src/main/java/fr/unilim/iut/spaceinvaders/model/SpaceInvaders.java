@@ -181,7 +181,19 @@ public class SpaceInvaders implements Jeu {
 			throw new MissileException(
 					"Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
 
-		this.missiles.add(this.vaisseau.tirerUnMissile(dimensionMissile, vitesseMissile));
+		Missile missileTempo = this.vaisseau.tirerUnMissile(dimensionMissile, vitesseMissile);
+		 boolean res = true;
+		if (this.aUnMissile()) {
+			for (Missile missile : missiles) {
+				if (Collision.detecterCollision(missile, missileTempo)) {
+					res = false;
+				}
+			}
+
+		} 
+		if (res) {
+			this.missiles.add(missileTempo);
+		}
 	}
 
 	public void deplacerMissile() {
